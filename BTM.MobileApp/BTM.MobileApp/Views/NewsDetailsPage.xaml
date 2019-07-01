@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BTM.MobileApp.Views.NewsDetailsPage"
+             Title="News Article">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="BackClicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <Label Text="{Binding Name}"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="Center"
+                   FontSize="Medium"
+                   HorizontalTextAlignment="Center"/>
+            <Image Source="{Binding Image}"></Image>
+            <Label Text="{Binding Description}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding Submitter, StringFormat='Written by: \{0}'}" 
+                       Grid.Row="0" Grid.Column="0" 
+                       HorizontalOptions="Start"/>
+                <Label Text="{Binding DateAdded, StringFormat='Added on: \{0:dd MMM, yyyy}'}"
+                       Grid.Row="0" Grid.Column="1"
+                       HorizontalOptions="End"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BTM.MobileApp.Views.BugAddPage"
+             Title="Report a bug">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Title* " FontSize="Medium" />
+            <Entry Text="{Binding Bug.Title}" FontSize="Small" />
+            
+            <Label Text="Description: *" FontSize="Medium" />
+            <Editor Text="{Binding Bug.Description}" FontSize="Small" Margin="0" />
+
+            <Label Text="Problem source" FontSize="Medium" />
+            <Entry Text="{Binding Bug.Url}" FontSize="Small" />
+
+            <Label Text="Assumed fix priority: *" FontSize="Medium" />
+            <Picker x:Name="PriorityPicker" 
+                    ItemsSource="{Binding Priorities}" 
+                    SelectedIndexChanged="SelectPriority"></Picker>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

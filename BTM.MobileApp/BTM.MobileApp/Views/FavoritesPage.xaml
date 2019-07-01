@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BTM.MobileApp.ViewModels"
+             x:Class="BTM.MobileApp.Views.FavoritesPage"
+             Title="Favorites">
+
+    <ContentPage.BindingContext>
+        <viewModels:FavoritesListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <ListView ItemsSource="{Binding FavoritesList}"
+                      ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" FontSize="Medium"/>
+                                <Label Text="{Binding Description}" Grid.Row="1" Grid.ColumnSpan="2"/>
+                                <StackLayout Grid.Row="2" Grid.Column="0">
+                                    <Label HorizontalTextAlignment="Center" Text="Date created:"/>
+                                    <Label HorizontalTextAlignment="Center" Text="{Binding DateAdded, StringFormat='\{0:dd MMM, yyyy}'}"/>
+                                </StackLayout>
+                                <StackLayout Grid.Row="2" Grid.Column="1">
+                                    <Label HorizontalTextAlignment="Center" Text="Created by:"/>
+                                    <Label HorizontalTextAlignment="Center" Text="{Binding Creator}"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

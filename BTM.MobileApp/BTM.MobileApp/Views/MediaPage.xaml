@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:BTM.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="BTM.MobileApp.Views.MediaPage"
+             Title="Movies">
+    <ContentPage.BindingContext>
+        <viewModels:MediaListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                </Grid.ColumnDefinitions>
+                <Entry Text="{Binding MovieTitle}" Placeholder="Title" Grid.Row="0" Grid.Column="0" />
+                <Entry Text="{Binding Year}" Placeholder="Release Year" Grid.Row="0" Grid.Column="1" />
+                <Button Text="Search" Grid.Row="1" Grid.Column="1" Clicked="Search_Clicked" />
+                <Picker ItemsSource="{Binding MovieGenres}" 
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedGenre}"
+                        Grid.Row="1" Grid.Column="0"></Picker>
+            </Grid>
+            
+            <ListView ItemsSource="{Binding MediaList}"
+                      ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="StartAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*" />
+                                    <ColumnDefinition Width="0.7*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding Image}" 
+                                       Grid.RowSpan="2"
+                                       Grid.Column="0" 
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="FillAndExpand"
+                                       HeightRequest="200"></Image>
+                                <Label Text="{Binding Title}" 
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16" 
+                                       Grid.Column="1" Grid.Row="0"/>
+                                <Label Text="{Binding Description}"
+                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontSize="13" 
+                                       VerticalOptions="Start"
+                                       Grid.Column="1" Grid.Row="1"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

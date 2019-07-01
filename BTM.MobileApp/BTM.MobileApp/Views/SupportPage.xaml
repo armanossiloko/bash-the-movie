@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:BTM.MobileApp.ViewModels"
+             mc:Ignorable="d"
+             x:Class="BTM.MobileApp.Views.SupportPage"
+             Title="Support">
+    <ContentPage.Resources>
+        <StyleSheet>
+            <![CDATA[
+            .Content {
+                background-color: #b3b5b7;
+                border-width: .5;
+                border-color: #9acd32;
+            }
+            ]]>
+        </StyleSheet>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewModels:SupportListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddTicket_Clicked" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <!--<Label Text="Support"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" FontSize="Medium" />-->
+            <ListView ItemsSource="{Binding TicketList}"
+                      ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5" StyleClass="Content">
+                                <ContentView Padding="5,0,0,0">
+                                    <Label Text="{Binding Title}" />
+                                </ContentView>
+                                <Label Text="{Binding Content}" />
+                                <Label Text="{Binding DateAdded, StringFormat='Added on: \{0:dd MMM, yyyy}'}" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

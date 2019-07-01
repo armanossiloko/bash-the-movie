@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BTM.MobileApp.Views.FeedbackDetailPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="BackClicked" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <Label Text="{Binding Name}"
+                   HorizontalOptions="CenterAndExpand" 
+                   FontSize="Large"/>
+
+            <Label Text="Idea content:" FontSize="Medium" />
+            <Label Text="{Binding Content}" d:Text="Item description" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.35*"/>
+                    <ColumnDefinition Width="0.65*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding Addressed, StringFormat='Addressed: \{0}'}"
+                   d:Text="Item Addressed" FontSize="Medium" Grid.Column="0"/>
+                <StackLayout Grid.Column="1">
+                    <Label Text="{Binding User, StringFormat='Added by: \{0}'}"
+                           d:Text="Item Submitter" FontSize="Small" HorizontalOptions="End"/>
+                    <Label Text="{Binding DateAdded, StringFormat='Added on: \{0:dd MMM, yyyy}'}"
+                           d:Text="Item DateAdded" FontSize="Small" HorizontalOptions="End"/>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

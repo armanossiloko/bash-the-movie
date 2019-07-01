@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             mc:Ignorable="d"
+             x:Class="BTM.MobileApp.Views.MediaDetailPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="BackClicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Title}"
+                   HorizontalOptions="CenterAndExpand" 
+                   FontSize="Large"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.35*"/>
+                    <ColumnDefinition Width="0.65*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding Poster}" 
+                       Grid.Column="0" 
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="FillAndExpand"
+                       HeightRequest="200"></Image>
+                <StackLayout Grid.Column="1">
+                    <Label Text="{Binding Synopsis}" />
+                    <Label Text="{Binding Director, StringFormat='Director: \{0}'}" VerticalOptions="End" />
+                    <Label Text="{Binding DateReleased, StringFormat='Released: \{0:dd MMM, yyyy}'}" VerticalOptions="End" />
+                    <rating:SfRating x:Name="rating" ItemCount="10" ItemSize="25" ValueChanged="Rating_ValueChanged"/>
+                </StackLayout>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.35*"/>
+                    <ColumnDefinition Width="0.65*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Padding="5" Grid.Column="0">
+                    <Label Text="Genres:"/>
+                    <Label Text="Origin country:"/>
+                    <Label Text="Language(s):"/>
+                    <Label Text="Budget:"/>
+                    <Label Text="Box Office:"/>
+                    <Label Text="Plot keywords:"/>
+                </StackLayout>
+                <StackLayout Padding="5" Grid.Column="1">
+                    <Label Text="{Binding Genres}"/>
+                    <Label Text="{Binding Country}"/>
+                    <Label Text="{Binding Languages}"/>
+                    <Label Text="{Binding Budget}"/>
+                    <Label Text="{Binding BoxOffice}"/>
+                    <Label Text="{Binding Keywords}"/>
+                </StackLayout>
+            </Grid>
+            <Button Text="Add to Favorites" Clicked="AddToFavoritesClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:BTM.MobileApp.ViewModels"
+             x:Class="BTM.MobileApp.Views.ProfilePage"
+             Title="Profile">
+
+    <ContentPage.BindingContext>
+        <viewModels:UserPreviewViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <Image Source="{Binding Avatar}" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center"/>
+            <Label Text="{Binding Username}"
+                HorizontalOptions="Center" FontSize="Large" />
+            <Grid VerticalOptions="Start"> 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Email:"        FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
+                <Label Text="First Name:"   FontSize="Medium" Grid.Column="0" Grid.Row="1"/>
+                <Label Text="Middle Name:"  FontSize="Medium" Grid.Column="0" Grid.Row="2"/>
+                <Label Text="Last Name:"    FontSize="Medium" Grid.Column="0" Grid.Row="3"/>
+
+                <Label Text="{Binding Email}"      FontSize="Medium" Grid.Column="1" Grid.Row="0"/>
+                <Label Text="{Binding FirstName}"  FontSize="Medium" Grid.Column="1" Grid.Row="1"/>
+                <Label Text="{Binding MiddleName}" FontSize="Medium" Grid.Column="1" Grid.Row="2"/>
+                <Label Text="{Binding LastName}"   FontSize="Medium" Grid.Column="1" Grid.Row="3"/>
+            </Grid>
+            <Grid VerticalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Date joined:" FontSize="Medium" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="{Binding JoinDate, StringFormat='\{0:dd MMM, yyyy}'}" 
+                       HorizontalTextAlignment="Center" 
+                       FontSize="Medium"
+                       Grid.Row="1" 
+                       Grid.Column="0"/>
+                <Label Text="Date of birth:" FontSize="Medium" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+                <Label Text="{Binding DateOfBirth, StringFormat='\{0:dd MMM, yyyy}'}" 
+                       HorizontalTextAlignment="Center" 
+                       FontSize="Medium"
+                       Grid.Row="1" 
+                       Grid.Column="1"/>
+            </Grid>
+            <!-- <Button HorizontalOptions="End" VerticalOptions="Start" Text="Logout" Clicked="Logout_Clicked"/> -->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

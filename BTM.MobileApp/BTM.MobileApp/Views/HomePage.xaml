@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             mc:Ignorable="d"
+             x:Class="BTM.MobileApp.Views.HomePage"
+             Title="Home">
+
+
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <Label Text="Movie suggestions based on your preferences:" HorizontalOptions="Center" />
+            <StackLayout HeightRequest="205" VerticalOptions="Start">
+                <controls:CarouselViewControl Orientation="Horizontal" 
+                                              InterPageSpacing="5" 
+                                              ItemsSource="{Binding RecommendedMovies}" 
+                                              HorizontalOptions="FillAndExpand">
+                    <controls:CarouselViewControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*"/>
+                                    <ColumnDefinition Width="0.6*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Image}" VerticalOptions="Start" HeightRequest="200" Grid.Column="0"></Image>
+                                <StackLayout Padding="5" Grid.Column="1">
+                                    <Label HorizontalOptions="Start" Text="{Binding Title}"/>
+                                    <Label HorizontalOptions="Start" Text="{Binding Description}"/>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </controls:CarouselViewControl.ItemTemplate>
+                </controls:CarouselViewControl>
+            </StackLayout>
+            
+            <Label Text="Top movies at Box Office:"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*"/>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding TopBoxOfficeMovie}" HeightRequest="200" Grid.Column="1" ></Image>
+                <ListView ItemsSource="{Binding BoxOfficeMovies}" Grid.Column="0" ItemSelected="OnItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding Title}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Label Text="Top movies by budget:"
+                VerticalOptions="Start" 
+                HorizontalOptions="CenterAndExpand" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding TopBudgetMovie}" HeightRequest="200" Grid.Column="0" ></Image>
+                <ListView ItemsSource="{Binding BudgetMovies}" Grid.Column="1" ItemSelected="OnItemSelected">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding Title}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
