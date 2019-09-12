@@ -25,7 +25,7 @@ namespace BTM.WebAPI.Controllers
         }
 
         [HttpGet("{UserID}")]
-        public IEnumerable<Media> RecommentMovies(int UserID) //UserID
+        public IEnumerable<Media> RecommendMovies(int UserID) //UserID
         {
             try
             {
